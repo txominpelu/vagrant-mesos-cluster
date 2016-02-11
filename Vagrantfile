@@ -16,6 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "mesos-master1" do |cfg|
     cfg.vm.network "forwarded_port", guest: 8080, host: 8080
     cfg.vm.network "forwarded_port", guest: 5050, host: 5050
+    cfg.vm.network "forwarded_port", guest: 2181, host: 2181
   end
 
   cluster.each do |hostname, info|
@@ -23,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define hostname do |cfg|
 
       cfg.vm.provider :virtualbox do |vb, override|
-        override.vm.box = "wily64"
+        override.vm.box = "vivid64"
         override.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/wily/current/wily-server-cloudimg-amd64-vagrant-disk1.box"
         override.vm.network :private_network, ip: "#{info[:ip]}"
         override.vm.hostname = hostname
