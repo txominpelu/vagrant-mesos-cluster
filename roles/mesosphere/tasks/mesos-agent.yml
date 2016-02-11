@@ -1,6 +1,6 @@
 ---
 - name: Make sure mesos agent is running and config is up-to-date
-  sudo: yes
+  become: yes
   docker:
     image: "{{mesos_agent_docker_image}}"
     name: "{{mesos_agent_name}}"

@@ -13,6 +13,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.cache.enable :apt
   end
 
+  config.vm.define "mesos-master1" do |cfg|
+    cfg.vm.network "forwarded_port", guest: 8080, host: 8080
+    cfg.vm.network "forwarded_port", guest: 5050, host: 5050
+  end
+
   cluster.each do |hostname, info|
 
     config.vm.define hostname do |cfg|
