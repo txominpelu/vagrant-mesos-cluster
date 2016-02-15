@@ -14,9 +14,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "mesos-master1" do |cfg|
-    cfg.vm.network "forwarded_port", guest: 8080, host: 8080
     cfg.vm.network "forwarded_port", guest: 5050, host: 5050
     cfg.vm.network "forwarded_port", guest: 2181, host: 2181
+    cfg.vm.network "forwarded_port", guest: 8080, host: 8080
+  end
+
+  config.vm.define "mesos-slave1" do |cfg|
+    cfg.vm.network "forwarded_port", guest: 5051, host: 5051
   end
 
   cluster.each do |hostname, info|

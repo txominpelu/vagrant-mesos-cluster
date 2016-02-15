@@ -11,7 +11,11 @@
     state: "present"
     force: yes
 
-- name: Set default settings for mesos-slave
+- name: Set mesos-slave containerizers
+  template: src=containerizers.j2 dest=/etc/mesos-slave/containerizers
+  sudo: yes
+
+- name: Set mesos-slave config
   template: src=mesos-slave.j2 dest=/etc/default/mesos-slave
   sudo: yes
 
@@ -20,31 +24,7 @@
     name: mesos-slave
     state: restarted
 
-#- name: Make sure mesos agent is running and config is up-to-date
-#  become: yes
-#  docker:
-#    image: "{{mesos_agent_docker_image}}"
-#    name: "{{mesos_agent_name}}"
-#    volumes:
-#      - "/sys:/sys"
-#      - "/var/run/docker.sock:/var/run/docker.sock"
-#      - "/var/marathon:/var/marathon"
-#    ports:
-#      - "5051:5051"
-#    expose:
-#      - 5051
-#    env:
-#      MESOS_CONTAINERIZERS: "{{mesos_containerizers}}"
-#      MESOS_DOCKER_MESOS_IMAGE: "{{mesos_agent_docker_image}}"
-#      MESOS_DOCKER_STOP_TIMEOUT: "{{mesos_docker_stop_timeout}}"
-#      MESOS_EXECUTOR_REGISTRATION_TIMEOUT: "{{mesos_executor_registration_timeout}}"
-#      MESOS_HOSTNAME: "{{inventory_hostname}}"
-#      MESOS_IP: "{{host_ip}}"
-#      MESOS_ISOLATION: "{{mesos_isolation}}"
-#      MESOS_LOGGING_LEVEL: "{{mesos_logging_level}}"
-#      MESOS_LOG_DIR: "{{mesos_log_dir}}"
-#      MESOS_MASTER: "{{mesos_zk}}"
-#    privileged: True
-#    net: host
-#    restart_policy: always
-#    state: reloaded
+- name: stop mesos-master
+  service:
+    name: mesos-master
+    state: stopped
