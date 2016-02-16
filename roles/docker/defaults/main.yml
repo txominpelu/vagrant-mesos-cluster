@@ -1,5 +1,5 @@
 ---
-docker_ubuntu_name: "{{ansible_distribution_release}}"
+docker_ubuntu_name: "vivid"
 docker_keyserver: "hkp://p80.pool.sks-keyservers.net:80"
 docker_keyserver_id: "58118E89F3A912897C070ADBF76221572C52609D"
 docker_version: "1.9.1"

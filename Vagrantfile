@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       cfg.vm.provider :virtualbox do |vb, override|
         override.vm.box = "vivid64"
-        override.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/wily/current/wily-server-cloudimg-amd64-vagrant-disk1.box"
+        override.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/vivid/current/vivid-server-cloudimg-amd64-vagrant-disk1.box"
         override.vm.network :private_network, ip: "#{info[:ip]}"
         override.vm.hostname = hostname
 
