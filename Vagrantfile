@@ -31,7 +31,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         override.vm.box = "vivid64"
         override.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/vivid/current/vivid-server-cloudimg-amd64-vagrant-disk1.box"
         override.vm.network :private_network, ip: "#{info[:ip]}"
-        override.vm.hostname = hostname
+        override.vm.provision :shell, inline: "hostnamectl set-hostname #{hostname}"
+        #override.vm.hostname = hostname
 
         vb.name = 'vagrant-mesos-' + hostname
         vb.customize ["modifyvm", :id, "--memory", info[:mem], "--cpus", info[:cpus], "--hwvirtex", "on" ]
