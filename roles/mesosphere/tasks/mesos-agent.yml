@@ -15,6 +15,10 @@
   template: src=containerizers.j2 dest=/etc/mesos-slave/containerizers
   sudo: yes
 
+- name: Set mesos-slave hostname
+  template: src=hostname.j2 dest=/etc/mesos-slave/hostname
+  sudo: yes
+
 - name: Set mesos-slave config
   template: src=mesos-slave.j2 dest=/etc/default/mesos-slave
   sudo: yes

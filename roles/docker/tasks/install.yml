@@ -1,6 +1,7 @@
 ---
 - name: Get Docker release tool key
   apt_key: keyserver={{docker_keyserver}} id={{docker_keyserver_id}} state=present
+  ignore_errors: yes
 
 - name: Add Docker deb repository
   apt_repository:
