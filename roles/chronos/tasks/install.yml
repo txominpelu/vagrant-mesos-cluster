@@ -1,0 +1,15 @@
+---
+- name: Make sure chronos is running and config is up-to-date
+  sudo: yes
+  docker:
+    image: "{{chronos_docker_image}}"
+    name: "{{chronos_name}}"
+    ports:
+      - "8081:8081"
+    expose:
+      - 8081
+    command: /usr/bin/chronos run_jar --http_port 8081 --zk_hosts {{zk_endpoint}} -h {{host_ip}} --master {{mesos_zk}}
+    privileged: True
+    net: host
+    restart_policy: always
+    state: reloaded

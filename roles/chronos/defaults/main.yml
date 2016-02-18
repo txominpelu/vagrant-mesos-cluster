@@ -1,0 +1,4 @@
+---
+chronos_version: "2.4.0"
+chronos_docker_image: "mesosphere/chronos:chronos-{{chronos_version}}-0.1.20151007110204.ubuntu1404-mesos-0.26.0-0.2.145.ubuntu1404"
+chronos_name: "chronos"

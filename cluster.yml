@@ -34,6 +34,7 @@
     - { role: zookeeper, tags: [ 'zookeeper' ] }
     - { role: mesosphere, tags: [ 'mesos' ], mesos_mode: master }
     - { role: marathon, tags: [ 'marathon'] }
+    - { role: chronos, tags: [ 'chronos'] }
 
 # Mesos slaves
 - hosts: mesos-slaves
